@@ -1,0 +1,64 @@
+{% load staticfiles %}
+<html>
+    <head>
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="{% static 'css/club.css' %}">
+		<link href='https://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+        <title>BE ACTIVE</title>
+    </head>
+	<body>
+		 <div>
+            <h1><a href="">BE ACTIVE Fitness Club</a></h1>
+        </div>
+		
+		<ul class="nav nav-pills">
+			<li role="presentation" class="active"><a href="#">Fitness Classes</a></li>
+			<li role="presentation"><a href="#">Join Us</a></li>
+			<li role="presentation"><a href="#">Contact Us</a></li>
+		</ul>
+		
+		<p>
+		</p>
+	{% regroup trainings by day_of_week as day_list %}
+	{% for day in day_list %}
+		<div class="panel panel-default">
+			
+			
+			<div class="panel-heading">{{day.grouper}}</div>
+			
+				
+			<table class="table">
+				<tr>
+					<th style="width: 20%">Training name</th>
+					<th style="width: 30%">Training description</th>
+					<th style="width: 10%">Instructor</th>
+					<th style="width: 10%">Start time</th>
+					<th style="width: 10%">End time</th>
+					<th style="width: 10%">Availability</th>
+					<th style="width: 10%">Actions</th>
+				</tr>
+			
+			
+				{% for training in day.list %}
+				
+				<tr>
+					<td>{{training}}</td>
+					<td>{{training.training_description}}</td>
+					<td>{{training.instructor}}</td>
+					<td>{{training.start_time}}</td>
+					<td>{{training.end_time}}</td>
+					<td>{{training.availability}} left</td>
+					<td><a href=""><button type="button" class="btn btn-info">Book</button></a></td>
+				</tr>
+				
+				{% endfor %}	
+			</table>
+		</div>
+	{% endfor %}
+
+
+		
+	</body>
+	
+</html>

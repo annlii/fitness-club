@@ -1,0 +1,17 @@
+h1 a {
+    color: #F50ABA;
+	font-family: 'Indie Flower';
+	font-weight: bold;
+}
+
+li a {
+    color: #0AAEF5;
+	font-weight: bold;
+}
+
+body {
+    padding-left: 15px;
+	padding-right: 15px;
+	font-family: 'Indie Flower';
+}
+
