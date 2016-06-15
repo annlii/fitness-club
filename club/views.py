@@ -1,12 +1,9 @@
 from django.shortcuts import render
 from .models import Training
-
-# Create your views here.
+from datetime import date
 
 def training_list(request):
-    
-        trainings = Training.objects.filter(state = "A").order_by('day_of_week','start_time')
-        """trainings = Traning"""
+        trainings = Training.objects.filter(state = "A").order_by('date','start_time')
         return render(request, 'club/training_list.html', {'trainings' : trainings})
     
         

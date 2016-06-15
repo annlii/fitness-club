@@ -1,29 +1,21 @@
 from django.db import models
-
-# Create your models here.
+from datetime import date
 
 class Training(models.Model):
     STATE = (
         ('A', 'Active'),
         ('I', 'Inactive'),
     )
-    DAYS = (
-        ('Mon', 'Monday'),
-        ('Tue', 'Tuesday'),
-        ('Wnd', 'Wednesday'),
-        ('Thu', 'Thursday'),
-        ('Fri', 'Friday'),
-        ('Sat', 'Saturday'),
-        ('Sun', 'Sunday'),
-    )
+
+        
     training_name = models.CharField(max_length = 50)
     training_description = models.CharField(max_length = 200)
     instructor = models.ForeignKey('Instructor')
     start_time = models.TimeField(blank = True)
     end_time = models.TimeField(default = '00:00:00')
     availability = models.IntegerField(default = 15)
-    state = models.CharField(max_length = 1, choices = STATE, default = 'A')
-    day_of_week = models.CharField(max_length = 3, choices = DAYS, default = 'Mon')
+    state = models.CharField(max_length = 1,choices = STATE, default = 'A')
+    date = models.DateField(default = date.today)
     
 
     def publish(self):
@@ -44,3 +36,14 @@ class Instructor(models.Model):
 
     def __unicode__(self):
         return self.instructor_name
+
+
+
+    
+
+    
+
+
+
+
+        

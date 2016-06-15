@@ -1,13 +1,15 @@
 {% load staticfiles %}
-<html>
+<html>	
     <head>
+        <title>BE ACTIVE</title>
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
-		<link rel="stylesheet" href="{% static 'css/club.css' %}">
 		<link href='https://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
-        <title>BE ACTIVE</title>
+		<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>	
+		<link rel="stylesheet" href="{% static 'css/club.css' %}">
     </head>
 	<body>
+		
 		 <div>
             <h1><a href="">BE ACTIVE Fitness Club</a></h1>
         </div>
@@ -20,12 +22,12 @@
 		
 		<p>
 		</p>
-	{% regroup trainings by day_of_week as day_list %}
-	{% for day in day_list %}
+	{% regroup trainings by date as date_list %}
+	{% for date in date_list %}
 		<div class="panel panel-default">
 			
 			
-			<div class="panel-heading">{{day.grouper}}</div>
+			<div class="panel-heading">{{date.grouper|date:"l, d F o"}}</div>
 			
 				
 			<table class="table">
@@ -40,7 +42,7 @@
 				</tr>
 			
 			
-				{% for training in day.list %}
+				{% for training in date.list %}
 				
 				<tr>
 					<td>{{training}}</td>

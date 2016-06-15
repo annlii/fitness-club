@@ -1,7 +1,7 @@
 h1 a {
     color: #F50ABA;
-	font-family: 'Indie Flower';
 	font-weight: bold;
+	font-family: 'Indie Flower';
 }
 
 li a {
@@ -12,6 +12,6 @@ li a {
 body {
     padding-left: 15px;
 	padding-right: 15px;
-	font-family: 'Indie Flower';
+	font-family: 'Lato';	
 }
 
