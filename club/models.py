@@ -6,10 +6,9 @@ class Training(models.Model):
         ('A', 'Active'),
         ('I', 'Inactive'),
     )
-
-        
+       
     training_name = models.CharField(max_length = 50)
-    training_description = models.CharField(max_length = 200)
+    training_desc = models.ForeignKey('TrnDesc')
     instructor = models.ForeignKey('Instructor')
     start_time = models.TimeField(blank = True)
     end_time = models.TimeField(default = '00:00:00')
@@ -17,10 +16,6 @@ class Training(models.Model):
     state = models.CharField(max_length = 1,choices = STATE, default = 'A')
     date = models.DateField(default = date.today)
     
-
-    def publish(self):
-        self.save()
-
     def __str__(self):
         return self.training_name
 
@@ -28,14 +23,18 @@ class Training(models.Model):
 class Instructor(models.Model):
     instructor_name = models.CharField(max_length=30)
 
-    def publish(self):
-        self.save()
-
     def __str__(self):
         return self.instructor_name
+    
 
-    def __unicode__(self):
-        return self.instructor_name
+class TrnDesc(models.Model):
+    tr_name = models.CharField(max_length = 50)
+    tr_desc = models.CharField(max_length = 200)
+
+    def __str__(self):
+        return self.tr_desc
+
+   
 
 
 
