@@ -22,7 +22,7 @@
 		
 		<p>
 		</p>
-	{% regroup trainings by date as date_list %}
+	{% regroup trainings by training_date as date_list %}
 	{% for date in date_list %}
 		<div class="panel panel-default">
 			
@@ -45,8 +45,8 @@
 				{% for training in date.list %}
 				
 				<tr>
-				    <td>{{training}}</td>
-					<td>{{training.training_desc}}</td>
+					<td>{{training.name}}</td>
+					<td>{{training.name.desc}}</td>
 					<td>{{training.instructor}}</td>
 					<td>{{training.start_time|time:"H:i"}}</td>
 					<td>{{training.end_time|time:"H:i"}}</td>
