@@ -1,7 +1,7 @@
 """URL module"""
 from django.conf.urls import url
-from . import views
+from club.views import HomePageView
 
 urlpatterns = [
-    url(r'^$', views.training_list, name='training_list'),
+    url(r'^$', HomePageView.as_view()),
 ]
