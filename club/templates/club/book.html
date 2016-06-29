@@ -1,0 +1,33 @@
+{% extends 'club/base.html' %}
+
+{% block content %}
+<div>
+	<h4>Please input your details to book the Fitness Class</h4>
+	<h5>You have chosen >>> </h5>
+	<br></br>
+</div>
+<form>
+  <div class="input-group">
+  <span class="input-group-addon" width="10px">First Name</span>
+  <input type="text" class="form-control" name="FirstName" placeholder="Enter your first name">
+  </div>
+  <p></p>
+  <div class="input-group">
+  <span class="input-group-addon">Last Name</span>
+  <input type="text" class="form-control" name="LastName" placeholder="Enter your last name">
+  </div>
+  <p></p>
+  <div class="input-group">
+  <span class="input-group-addon">E-mail</span>
+  <input type="text" class="form-control" name="Email" placeholder="Enter your email address">
+  </div>
+  <p></p>
+  <div class="input-group">
+  <span class="input-group-addon">Phone</span>
+  <input type="text" class="form-control" name="Phone" placeholder="Enter your phone number">
+  </div>
+  <br></br>
+  <td><a href=""><button type="button" class="btn btn-primary">Submit</button></a></td>
+</form>
+
+{% endblock %}

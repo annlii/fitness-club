@@ -1,17 +1,33 @@
 h1 a {
-    color: #F50ABA;
+    color: #D60606;
 	font-weight: bold;
-	font-family: 'Indie Flower';
+	padding-left: 70px;
+	
 }
 
 li a {
-    color: #0AAEF5;
 	font-weight: bold;
 }
 
 body {
+	margin: 0;
+    padding: 0;
     padding-left: 15px;
 	padding-right: 15px;
-	font-family: 'Lato';	
+	font-family: 'Lato';
+}
+
+.input-group-addon {
+    width: 20%;
+}
+
+.input-group {
+    width: 50%;
+}
+
+img {
+	position: absolute;
+    right: 15%;
+    width: 400px;
 }
 

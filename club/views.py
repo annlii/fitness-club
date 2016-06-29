@@ -14,4 +14,8 @@ class HomePageView(TemplateView):
         context['trainings'] = Training.objects.filter(state="A", training_date__gte=now).order_by('training_date', 'start_time')
         return context
 
+class BookView(TemplateView):
+    """Booking page"""
+    template_name = 'club/book.html'
+
 

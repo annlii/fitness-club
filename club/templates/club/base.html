@@ -1,0 +1,22 @@
+{% load staticfiles %}
+<html>	
+    <head>
+        <title>BE ACTIVE</title>
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+		<link href='https://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>	
+		<link rel="stylesheet" href="{% static 'css/club.css' %}">
+    </head>
+	<body>		
+		 <div>
+			<img src="{% static 'images/logo.png' %}"/>
+            <h1><a href="{%url 'homepage' %}">BE ACTIVE Fitness Club</a></h1>	
+        </div>
+		<br></br>
+		<div class="content container">
+           	{% block content %}
+			{% endblock %}
+        </div>
+    </body>
+</html>

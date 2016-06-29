@@ -1,27 +1,13 @@
-{% load staticfiles %}
-<html>	
-    <head>
-        <title>BE ACTIVE</title>
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
-		<link href='https://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
-		<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>	
-		<link rel="stylesheet" href="{% static 'css/club.css' %}">
-    </head>
-	<body>
-		
-		 <div>
-            <h1><a href="">BE ACTIVE Fitness Club</a></h1>
-        </div>
+{% extends 'club/base.html' %}
+
+{% block content %}
 		
 		<ul class="nav nav-pills">
 			<li role="presentation" class="active"><a href="#">Fitness Classes</a></li>
 			<li role="presentation"><a href="#">Join Us</a></li>
 			<li role="presentation"><a href="#">Contact Us</a></li>
 		</ul>
-		
-		<p>
-		</p>
+		<br></br>
 	{% regroup trainings by training_date as date_list %}
 	{% for date in date_list %}
 		<div class="panel panel-default">
@@ -51,7 +37,7 @@
 					<td>{{training.start_time|time:"H:i"}}</td>
 					<td>{{training.end_time|time:"H:i"}}</td>
 					<td>{{training.availability}} left</td>
-					<td><a href=""><button type="button" class="btn btn-info">Book</button></a></td>
+					<td><a href="{% url 'book' %}"><button type="button" class="btn btn-primary">Book</button></a></td>
 				</tr>
 				
 				{% endfor %}	
@@ -59,8 +45,4 @@
 		</div>
 	{% endfor %}
 
-
-		
-	</body>
-	
-</html>
+{% endblock %}
