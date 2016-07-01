@@ -5,5 +5,5 @@ from .views import BookView
 
 urlpatterns = [
     url(r'^$', HomePageView.as_view(), name='homepage'),
-    url(r'^book$', BookView.as_view(), name='book'),
+    url(r'^book/(?P<pk>\d+)/$', BookView.as_view(), name='book'),
 ]
