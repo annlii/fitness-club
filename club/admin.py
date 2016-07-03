@@ -17,7 +17,7 @@ class TrainingAdmin(admin.ModelAdmin):
 admin.site.register(Training, TrainingAdmin)
 
 class ParticipantAdmin(admin.ModelAdmin):
-    list_display = ('first_name','last_name', 'email', 'phone')
+    list_display = ('first_name','last_name', 'email', 'phone', 'training')
 
 admin.site.register(Participant, ParticipantAdmin)
 
