@@ -39,6 +39,4 @@ class Participant(models.Model):
     phone = models.CharField(max_length=10)
     training = models.ForeignKey('Training')
     def __str__(self):
-        return self.training.last_name
-
-    """'%s %s' % (self.first_name, self.last_name)"""
+        return self.training.training_date.start_time.end_time

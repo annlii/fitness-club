@@ -7,13 +7,12 @@ from django.views.generic.detail import SingleObjectMixin
 from .models import Training
 from .forms import ParticipantForm
 
-now = datetime.datetime.now()
-
 class HomePageView(TemplateView):
     """Home Page with list of trainings"""
     template_name = 'club/training_list.html'
 
     def get_context_data(self, **kwargs):
+        now = datetime.datetime.now()
         context = super(HomePageView, self).get_context_data(**kwargs)
         context['trainings'] = Training.objects.filter(state="A", training_date__gte=now).order_by('training_date', 'start_time')
         return context
