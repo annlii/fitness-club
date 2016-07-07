@@ -17,11 +17,10 @@ class TrainingAdmin(admin.ModelAdmin):
 admin.site.register(Training, TrainingAdmin)
 
 class ParticipantAdmin(admin.ModelAdmin):
-    fields = ('first_name','last_name', 'email', 'phone')
     list_display = ('first_name','last_name', 'email', 'phone', 'related_training_name',
                     'related_training_date', 'related_training_start_time')
-    list_filter = ('first_name','last_name')
-    list_display_links = None
+    list_filter = ('first_name','last_name',
+                   'training__name', 'training__training_date')
 
     def related_training_name(self, obj):
         return obj.training.name
@@ -35,11 +34,6 @@ class ParticipantAdmin(admin.ModelAdmin):
         return obj.training.start_time
     related_training_start_time.short_description = 'Training start time'
 
-    def has_add_permission(self, request):
-        return False
-
-    def has_delete_permission(self, request, obj=None):
-        return False
     
 admin.site.register(Participant, ParticipantAdmin)
 

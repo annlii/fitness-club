@@ -16,7 +16,7 @@ class Training(models.Model):
     state = models.CharField(max_length=1, choices=STATE, default='A')
     training_date = models.DateField(default=date.today)
     def __str__(self):
-        return self.name.desc
+        return self.name.name
 
 class Instructor(models.Model):
     """Class for dictionary with instructors"""
@@ -39,4 +39,4 @@ class Participant(models.Model):
     phone = models.CharField(max_length=10)
     training = models.ForeignKey('Training')
     def __str__(self):
-        return self.training.training_date.start_time.end_time
+        return self.training.name.name

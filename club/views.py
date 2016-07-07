@@ -4,6 +4,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.views.generic.detail import SingleObjectMixin
+from django.contrib import messages
+from django.core.urlresolvers import reverse
 from .models import Training
 from .forms import ParticipantForm
 
@@ -35,14 +37,13 @@ class BookView(SingleObjectMixin, TemplateView):
         form = self.form_class(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/success/')
+            messages.success(request, 'Well done! Fitness Class has been booked for you. If you would like to cancel booked fitness class, please contact our office.')
+            return HttpResponseRedirect('/book/' + pk)
+        else:
+            messages.error(request, 'Oh snap! Fill all fields and try submitting again.')
+            return HttpResponseRedirect('/book/' + pk)
         return render(request, self.template_name, {'form': form})
 
-class SuccessView(TemplateView):
-    """Page which is displayed afted submit the booking page"""
-    template_name = 'club/success.html'
-    
-    
-    
+
 
 
