@@ -2,12 +2,13 @@
 import datetime
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, FormView
 from django.views.generic.detail import SingleObjectMixin
 from django.contrib import messages
 from django.core.urlresolvers import reverse
 from .models import Training
 from .forms import ParticipantForm
+
 
 class HomePageView(TemplateView):
     """Home Page with list of trainings"""
@@ -19,7 +20,7 @@ class HomePageView(TemplateView):
         context['trainings'] = Training.objects.filter(state="A", training_date__gte=now).order_by('training_date', 'start_time')
         return context
 
-class BookView(SingleObjectMixin, TemplateView):
+class BookView(SingleObjectMixin, FormView):
     """
     Booking page - getting data of trainings and
     posting data of participant to db
@@ -27,12 +28,12 @@ class BookView(SingleObjectMixin, TemplateView):
     template_name = 'club/book.html'
     model = Training
     form_class = ParticipantForm
-
+   
     def get(self, request, **kwargs):
         self.object = self.get_object()
         context = self.get_context_data(object=self.object)
         return self.render_to_response(context)
-
+        
     def post(self, request, pk):
         form = self.form_class(request.POST)
         if form.is_valid():
