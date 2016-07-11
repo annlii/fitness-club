@@ -5,7 +5,7 @@
 	<h4>Please input your details to book the Fitness Class</h4>
 	<br></br>
 </div>
-<form action="{%url 'book' pk=training.pk%}" method="post">{% csrf_token %}
+<form action=" " method="post">{% csrf_token %}
 <div class="input-group">
   <span class="input-group-addon">Training</span>
   <label type="hidden" class="form-control" name="training">{{training.name}} on {{training.training_date}} at {{training.start_time}}

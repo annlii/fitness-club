@@ -2,12 +2,14 @@
 import datetime
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, FormView
 from django.views.generic.detail import SingleObjectMixin
+#from django.views.generic.edit import FormMixin
 from django.contrib import messages
 from django.core.urlresolvers import reverse
-from .models import Training
+from .models import Training, Participant
 from .forms import ParticipantForm
+
 
 class HomePageView(TemplateView):
     """Home Page with list of trainings"""
@@ -32,7 +34,7 @@ class BookView(SingleObjectMixin, TemplateView):
         self.object = self.get_object()
         context = self.get_context_data(object=self.object)
         return self.render_to_response(context)
-
+        
     def post(self, request, pk):
         form = self.form_class(request.POST)
         if form.is_valid():
@@ -41,8 +43,10 @@ class BookView(SingleObjectMixin, TemplateView):
             return HttpResponseRedirect('/book/' + pk)
         else:
             messages.error(request, 'Oh snap! Fill all fields and try submitting again.')
-            return HttpResponseRedirect('/book/' + pk)
+            return render(request, self.template_name, {'form': form})
         return render(request, self.template_name, {'form': form})
+        
+    
 
 
 
