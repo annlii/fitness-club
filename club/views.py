@@ -20,7 +20,7 @@ class HomePageView(TemplateView):
         context['trainings'] = Training.objects.filter(state="A", training_date__gte=now).order_by('training_date', 'start_time')
         return context
 
-class BookView(SingleObjectMixin, FormView):
+class BookView(SingleObjectMixin, TemplateView):
     """
     Booking page - getting data of trainings and
     posting data of participant to db
@@ -42,7 +42,7 @@ class BookView(SingleObjectMixin, FormView):
             return HttpResponseRedirect('/book/' + pk)
         else:
             messages.error(request, 'Oh snap! Fill all fields and try submitting again.')
-            return HttpResponseRedirect('/book/' + pk)
+            return render(request, self.template_name, {'form': form})
         return render(request, self.template_name, {'form': form})
 
 
