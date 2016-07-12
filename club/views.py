@@ -29,10 +29,18 @@ class BookView(SingleObjectMixin, TemplateView):
     model = Training
     form_class = ParticipantForm
    
+    """
     def get(self, request, **kwargs):
         self.object = self.get_object()
         context = self.get_context_data(object=self.object)
-        return self.render_to_response(context)
+        return self.render_to_response(context)"""
+
+    def get(self, request, pk):
+        form = ParticipantForm()
+        context = {'form': form}
+        return render(request, 'club/book.html', context)
+
+    
         
     def post(self, request, pk):
         form = self.form_class(request.POST)
