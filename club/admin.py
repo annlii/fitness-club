@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import Training
 from .models import Instructor
 from .models import TrnDesc
-from .models import Participant
+from .models import Booking
 
 admin.site.register(Instructor)
 
@@ -16,7 +16,7 @@ class TrainingAdmin(admin.ModelAdmin):
     
 admin.site.register(Training, TrainingAdmin)
 
-class ParticipantAdmin(admin.ModelAdmin):
+class BookingAdmin(admin.ModelAdmin):
     list_display = ('first_name','last_name', 'email', 'phone', 'related_training_name',
                     'related_training_date', 'related_training_start_time')
     list_filter = ('first_name','last_name',
@@ -35,6 +35,6 @@ class ParticipantAdmin(admin.ModelAdmin):
     related_training_start_time.short_description = 'Training start time'
 
     
-admin.site.register(Participant, ParticipantAdmin)
+admin.site.register(Booking, BookingAdmin)
 
 
