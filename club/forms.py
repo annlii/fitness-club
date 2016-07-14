@@ -8,12 +8,14 @@ class BookingForm(forms.ModelForm):
     class Meta:
         """Standard class to connect form with model"""
         model = Booking
-        fields = '__all__'
-        #fields = ['first_name', 'last_name', 'email', 'phone', 'training']
+        #fields = '__all__'
+        fields = ['first_name', 'last_name', 'email', 'phone', 'training']
 
+        
+    """
     def clean_email(self):
         email = self.cleaned_data.get('email')
         if "@" not in email:
             raise forms.ValidationError("Invalid email address")
-        return email
+        return email"""
 
