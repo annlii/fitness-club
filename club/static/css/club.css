@@ -17,12 +17,8 @@ body {
 	font-family: 'Lato';
 }
 
-.input-group-addon {
-    width: 20%;
-}
-
 .input-group {
-    width: 50%;
+    width: 40%;
 }
 
 img {
@@ -31,4 +27,8 @@ img {
     width: 400px;
 }
 
+.training-context {
+	font-weight: bold;
+	font-size: 20px
+}
 

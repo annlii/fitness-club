@@ -1,27 +1,29 @@
 {% extends 'club/base.html' %}
 
 {% block content %}
+{% load bootstrap %}
 <div>
-	<h4>Please input your details to book the Fitness Class</h4>
-	<br></br>
+	<h4>Please input your details to book the following Fitness Class</h4>
 </div>
-<form action=" " method="post">{% csrf_token %}
-{{training.name}} {{training.training_date}} {{training.start_time}}
 <br></br>
-<label for="first_name">First name</label>
-{{form.first_name}}
+<form action=" " method="post">{% csrf_token %}
+<div class="training-context">
+<label>{{training.name}} {{training.training_date}} {{training.start_time}}</label>
+</div>
+<br></br>
+<div class="input-group">
+{{form.first_name|bootstrap}}
 <p></p>
-<label for="last_name">Last name</label>
-{{form.last_name}}
+{{form.last_name|bootstrap}}
 <p></p>
-<label for="email">E-mail</label>
-{{form.email}}
+{{form.email|bootstrap}}
 <p></p>
-<label for="Phone">Phone</label>
-{{form.phone}}
+{{form.phone|bootstrap}}
+</div>
 <input type="hidden" name="training" value={{training.id}}>	
-	<br></br>
- <a href=""><button type="submit" class="btn btn-primary">Submit</button></a>
+<br></br>
+<a href=""><button type="submit" class="btn btn-primary">Submit</button></a>
 </form>
+</div>
 
 {% endblock %}

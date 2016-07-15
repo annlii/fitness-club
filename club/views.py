@@ -37,13 +37,16 @@ class BookView(View):
             form.save()
             messages.success(request, 'Well done! Fitness Class has been booked for you. If you would like to cancel booked fitness class, please contact our office.')
             return HttpResponseRedirect('/book/' + training_id)
+            #return render(request, self.template_name, {'form': form})
         else:
-            form = self.form_class()
-            messages.error(request, 'Oh snap! Fill all fields and try submitting again.')
-            return render(request, self.template_name, {'form': form})
+            #form = self.form_class()
+            messages.error(request, 'Oh snap! Fill/correct all fields and try submitting again.')
+            #return HttpResponseRedirect('/book/' + training_id)
+            #return render(request, self.template_name, {'form': form})
         return render(request, self.template_name, {'form': form})
        
     def get(self, request, training_id):
+        form = self.form_class()
         training = get_object_or_404(Training,pk = training_id)
         form = self.form_class(instance=training)
         context = {'training': training,
