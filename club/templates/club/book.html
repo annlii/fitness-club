@@ -1,39 +1,33 @@
 {% extends 'club/base.html' %}
 
 {% block content %}
+{% load bootstrap %}
 <div>
-	<h4>Please input your details to book the Fitness Class</h4>
+	<h4>Please input your details to book the following Fitness Class</h4>
 	<br></br>
+	<div class="training-context">
+		<label>{{training.name}} {{training.training_date}} {{training.start_time}}</label>
+	</div>
 </div>
+<<<<<<< HEAD
 <form action=" " method="post">{% csrf_token %}
+=======
+<br></br>
+<form action=" " method="POST">{% csrf_token %}
+>>>>>>> problems
 <div class="input-group">
-  <span class="input-group-addon">Training</span>
-  <label type="hidden" class="form-control" name="training">{{training.name}} on {{training.training_date}} at {{training.start_time}}
- </div>
-   <p></p>
-   <input type="hidden" name="training" value={{training.id}}>
-   <p></p>
-<div class="input-group">
-  <span class="input-group-addon" width="10px">First Name</span>
-  <input type="text" class="form-control" name="first_name" placeholder="Enter your first name">
- </div>
-  <p></p>
- <div class="input-group">
-  <span class="input-group-addon">Last Name</span>
-  <input type="text" class="form-control" name="last_name" placeholder="Enter your last name">
- </div>
-  <p></p>
- <div class="input-group">
-  <span class="input-group-addon">E-mail</span>
-  <input type="text" class="form-control" name="email" placeholder="Enter your email address">
- </div>
-  <p></p>
- <div class="input-group">
-  <span class="input-group-addon">Phone</span>
-  <input type="text" class="form-control" name="phone" placeholder="Enter your phone number">
- </div>
-  <br></br>
-  <td><a href=""><button type="submit" class="btn btn-primary">Submit</button></a></td>
+{{form.first_name|bootstrap}}
+<p></p>
+{{form.last_name|bootstrap}}
+<p></p>
+{{form.email|bootstrap}}
+<p></p>
+{{form.phone|bootstrap}}
+</div>
+<input type="hidden" name="training" value={{training.id}}>	
+<br></br>
+<a href=""><button type="submit" class="btn btn-primary">Submit</button></a>
 </form>
+</div>
 
 {% endblock %}
