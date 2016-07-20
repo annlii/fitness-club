@@ -4,13 +4,13 @@
 {% load bootstrap %}
 <div>
 	<h4>Please input your details to book the following Fitness Class</h4>
+	<br></br>
+	<div class="training-context">
+		<label>{{training.name}} {{training.training_date}} {{training.start_time}}</label>
+	</div>
 </div>
 <br></br>
-<form action=" " method="post">{% csrf_token %}
-<div class="training-context">
-<label>{{training.name}} {{training.training_date}} {{training.start_time}}</label>
-</div>
-<br></br>
+<form action=" " method="POST">{% csrf_token %}
 <div class="input-group">
 {{form.first_name|bootstrap}}
 <p></p>
