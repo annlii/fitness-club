@@ -1,11 +1,7 @@
 """This is module to handle with forms"""
 from django import forms
-<<<<<<< HEAD
-from .models import Participant
-=======
 from .models import Booking
 import re
->>>>>>> problems
 from django.core.exceptions import ValidationError
 
 class BookingForm(forms.ModelForm):
@@ -14,9 +10,6 @@ class BookingForm(forms.ModelForm):
         """Standard class to connect form with model"""
         model = Booking
         fields = '__all__'
-<<<<<<< HEAD
-        #fields = ['first_name', 'last_name', 'email', 'phone', 'training']
-=======
          
     def clean_email(self):
         email = self.cleaned_data.get('email')
@@ -41,7 +34,6 @@ class BookingForm(forms.ModelForm):
         if not re.match(r"^[A-Za-z]*$", last_name):
             raise forms.ValidationError("Invalid last name")
         return last_name
->>>>>>> problems
 
     def clean_email(self):
         email = self.cleaned_data.get('email')

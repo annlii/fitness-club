@@ -1,16 +1,5 @@
 """This is a module to determine which data will be displayed"""
 import datetime
-<<<<<<< HEAD
-from django.http import HttpResponseRedirect
-from django.shortcuts import render
-from django.views.generic import TemplateView, FormView
-from django.views.generic.detail import SingleObjectMixin
-#from django.views.generic.edit import FormMixin
-from django.contrib import messages
-from django.core.urlresolvers import reverse
-from .models import Training, Participant
-from .forms import ParticipantForm
-=======
 #from django.http import HttpResponseRedirect
 #from django.shortcuts import render
 from django.views.generic import TemplateView, CreateView
@@ -23,7 +12,6 @@ from django.views.generic import TemplateView, CreateView
 from .models import Training, Booking
 from .forms import BookingForm
 
->>>>>>> problems
 
 
 class HomePageView(TemplateView):
@@ -43,21 +31,12 @@ class BookView(CreateView):
     posting data of booking to db
     """
 
-<<<<<<< HEAD
-    def get(self, request, **kwargs):
-        self.object = self.get_object()
-        context = self.get_context_data(object=self.object)
-        return self.render_to_response(context)
-        
-    def post(self, request, pk):
-=======
     template_name = 'club/book.html'
     form_class = BookingForm
     success_url = '/success/'
 
     """ 
     def post(self, request, training_id):
->>>>>>> problems
         form = self.form_class(request.POST)
         training = get_object_or_404(Training,pk = training_id)
         if form.is_valid():
@@ -65,13 +44,6 @@ class BookView(CreateView):
             messages.success(request, 'Well done! Fitness Class has been booked for you. If you would like to cancel booked fitness class, please contact our office.')
             return HttpResponseRedirect('/book/' + training_id)
         else:
-<<<<<<< HEAD
-            messages.error(request, 'Oh snap! Fill all fields and try submitting again.')
-            return render(request, self.template_name, {'form': form})
-        return render(request, self.template_name, {'form': form})
-        
-    
-=======
             messages.error(request, 'Oh snap! Fill/correct all fields and try submitting again.')
         return render(request, self.template_name, {'form': form, 'training': training})
        
@@ -91,12 +63,6 @@ class BookView(CreateView):
 
 class SuccessView(TemplateView):
     template_name = 'club/success.html'
-    
-
-    
-        
->>>>>>> problems
-
 
 
 
