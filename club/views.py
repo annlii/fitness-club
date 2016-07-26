@@ -3,6 +3,7 @@ import datetime
 #from django.http import HttpResponseRedirect
 #from django.shortcuts import render
 from django.views.generic import TemplateView, CreateView
+from django.views.generic.detail import DetailView
 #from django.views.generic.edit import FormMixin
 #from django.views.generic.detail import SingleObjectMixin
 #from django.template.response import TemplateResponse
@@ -63,6 +64,16 @@ class BookView(CreateView):
 
 class SuccessView(TemplateView):
     template_name = 'club/success.html'
+    """
+    model = Training
+    context_object_name = 'training'
+
+    def get_context_data(self, **kwargs):
+        context = super(SuccessView, self).get_context_data(**kwargs)
+        context['training'] = Training.objects.get(training=self.object)
+        return context
+    """
+
 
 
 
