@@ -1,13 +1,14 @@
 {% extends 'club/base.html' %}
 
 {% block content %}
-<div>
-Well done!
+<div class="col-md-6">
+<div class="alert alert-success" >
+<strong>Well done!</strong>
 <br></br>
-Following Fitness Class <label> {{ training.name }} </label> has been booked for you.
+Following Fitness Class <label> {{booking.training.name}} {{booking.training.training_date}} {{booking.training.start_time}} </label> has been booked for you.
 <br></br>
 If you would like to cancel booked fitness class, please contact our office.
 </div>
-
+</div>
 
 {% endblock %}

@@ -9,10 +9,10 @@ from django.views.generic.detail import DetailView
 #from django.template.response import TemplateResponse
 #from django.shortcuts import get_object_or_404
 #from django.contrib import messages
-#from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse
 from .models import Training, Booking
 from .forms import BookingForm
-
+from django.core import serializers
 
 
 class HomePageView(TemplateView):
@@ -28,13 +28,13 @@ class HomePageView(TemplateView):
 
 class BookView(CreateView):
     """
-    Booking page - getting data of trainings and
-    posting data of booking to db
+    Booking page - getting data of chosen training and
+    posting data of booked training to db and to success page
     """
 
     template_name = 'club/book.html'
     form_class = BookingForm
-    success_url = '/success/'
+    #success_url = '/success/'
 
     """ 
     def post(self, request, training_id):
@@ -56,24 +56,26 @@ class BookView(CreateView):
         return render(request, self.template_name, context)
     """
     
-    
     def get_context_data(self, **kwargs):
         context = super(BookView, self).get_context_data(**kwargs)
         context['training'] = Training.objects.get(pk=self.kwargs['training_id'])
-        return context
-
+        return context       
+    """
+    def form_valid(self, form):
+        self.request.session['temp_data'] = serializers.serialize('json', [Booking.objects.get(id=140)])
+        return super(BookView, self).form_valid(form)
+    """
+    
+    def get_success_url(self):
+        return reverse('success', args=(self.object.id,))
+    
+    
 class SuccessView(TemplateView):
     template_name = 'club/success.html'
-    """
-    model = Training
-    context_object_name = 'training'
 
     def get_context_data(self, **kwargs):
         context = super(SuccessView, self).get_context_data(**kwargs)
-        context['training'] = Training.objects.get(training=self.object)
-        return context
-    """
-
-
+        context['booking'] = Booking.objects.get(pk=self.kwargs['booking_id'])
+        return context     
 
 

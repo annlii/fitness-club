@@ -35,10 +35,4 @@ class BookingForm(forms.ModelForm):
             raise forms.ValidationError("Invalid last name")
         return last_name
 
-    def clean_email(self):
-        email = self.cleaned_data.get('email')
-        if "@" not in email:
-            raise forms.ValidationError("Invalid email address")
-        return email
-
     
