@@ -13,16 +13,21 @@ from django.core.urlresolvers import reverse
 from .models import Training, Booking
 from .forms import BookingForm
 from django.core import serializers
+from django.db.models import Count
 
 
 class HomePageView(TemplateView):
     """Home Page with list of trainings"""
     template_name = 'club/training_list.html'
+  
 
     def get_context_data(self, **kwargs):
         now = datetime.datetime.now()
         context = super(HomePageView, self).get_context_data(**kwargs)
         context['trainings'] = Training.objects.filter(state="A", training_date__gte=now).order_by('training_date', 'start_time')
+        for each_training in context['trainings']:       
+            each_training.counter = Booking.objects.filter(training_id=each_training.id).count()
+            each_training.diff = each_training.availability - each_training.counter
         return context
 
 
@@ -78,4 +83,5 @@ class SuccessView(TemplateView):
         context['booking'] = Booking.objects.get(pk=self.kwargs['booking_id'])
         return context     
 
+    
 

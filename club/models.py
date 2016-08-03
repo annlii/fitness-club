@@ -12,11 +12,12 @@ class Training(models.Model):
     instructor = models.ForeignKey('Instructor')
     start_time = models.TimeField(blank=True)
     end_time = models.TimeField(default='00:00:00')
-    availability = models.IntegerField(default=15)
+    availability = models.PositiveIntegerField(default=15)
     state = models.CharField(max_length=1, choices=STATE, default='A')
     training_date = models.DateField(default=date.today)
     def __str__(self):
         return self.name.name
+        
 
 class Instructor(models.Model):
     """Class for dictionary with instructors"""
