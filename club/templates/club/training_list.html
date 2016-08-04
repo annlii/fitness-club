@@ -37,7 +37,11 @@
 					<td>{{training.start_time|time:"H:i"}}</td>
 					<td>{{training.end_time|time:"H:i"}}</td>
 					<td>{{training.diff}}</td>
+					{% if training.diff > 0 %}
 					<td><a href="{% url 'book' training_id=training.pk%}"><button type="button" class="btn btn-primary">Book</button></a></td>
+					{% else %}
+					<td>Not available</td>
+					{% endif %}
 				</tr>
 				
 				{% endfor %}	
